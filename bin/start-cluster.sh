@@ -36,7 +36,7 @@ done
 
 echo "The config is available now..."
 
-MONGOS0_ID=$(sudo docker run -d wdalmut/mongodb mongos --configdb ${CONFIG0_IP}:10000 --logpath /dev/stdout --bind_ip 0.0.0.0 --port 9999)
+MONGOS0_ID=$(sudo docker run -p 9999:9999 -d wdalmut/mongodb mongos --configdb ${CONFIG0_IP}:10000 --logpath /dev/stdout --bind_ip 0.0.0.0 --port 9999)
 MONGOS0_IP=$(sudo docker inspect ${MONGOS0_ID} | grep "IPAddress" | cut -d':' -f2 | cut -d'"' -f2)
 echo "Contacting shard and mongod containers"
 
